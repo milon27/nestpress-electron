@@ -15,16 +15,17 @@ import { toast } from "react-toastify"
 
 export const useForgetPasswordController = () => {
     const navigate = useNavigate()
-    const {
-        control,
-        handleSubmit,
-        formState: { isSubmitting }
-    } = useForm<IForgetPasswordSchema>({
+    const form = useForm<IForgetPasswordSchema>({
         resolver: zodResolver(ForgetPasswordSchema),
         defaultValues: {
             email: ""
         }
     })
+    const {
+        control,
+        handleSubmit,
+        formState: { isSubmitting }
+    } = form
 
     const onSubmit = async (input: IForgetPasswordSchema) => {
         try {
@@ -37,11 +38,7 @@ export const useForgetPasswordController = () => {
     }
 
     // reset password
-    const {
-        control: resetControl,
-        handleSubmit: resetHandleSubmit,
-        formState: { isSubmitting: resetIsSubmitting }
-    } = useForm<IResetPasswordSchema>({
+    const resetForm = useForm<IResetPasswordSchema>({
         resolver: zodResolver(ResetPasswordSchema),
         defaultValues: {
             code: "",
@@ -49,6 +46,12 @@ export const useForgetPasswordController = () => {
             confirmPassword: ""
         }
     })
+
+    const {
+        control: resetControl,
+        handleSubmit: resetHandleSubmit,
+        formState: { isSubmitting: resetIsSubmitting }
+    } = resetForm
 
     const resetOnSubmit = async (input: IResetPasswordSchema) => {
         try {
@@ -64,10 +67,12 @@ export const useForgetPasswordController = () => {
     }
 
     return {
+        form,
         control,
         isSubmitting,
         handleSubmit: handleSubmit(onSubmit),
 
+        resetForm,
         resetControl,
         resetIsSubmitting,
         resetHandleSubmit: resetHandleSubmit(resetOnSubmit)

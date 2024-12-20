@@ -35,7 +35,7 @@
         "date-fns": "^4.1.0",
         "lucide-react": "^0.469.0",
         "react-error-boundary": "^4.1.2",
-        "react-hook-form": "^7.54.1",
+        "react-hook-form": "7.45.4",
         "react-router-dom": "^7.0.2",
         "react-toastify": "^11.0.2",
         "tailwind-merge": "2.2.1",

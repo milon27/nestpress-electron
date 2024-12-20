@@ -10,17 +10,18 @@ import { ErrorUtil } from "../../../utils/error.util"
 export const useLoginController = () => {
     const logout = useUserStore((s) => s.logout)
 
-    const {
-        control,
-        handleSubmit,
-        formState: { isSubmitting }
-    } = useForm<ILoginWithEmailDto>({
+    const form = useForm<ILoginWithEmailDto>({
         resolver: zodResolver(LoginWithEmailDto),
         defaultValues: {
             email: "",
             password: ""
         }
     })
+    const {
+        control,
+        handleSubmit,
+        formState: { isSubmitting }
+    } = form
 
     const onSubmit = async (input: ILoginWithEmailDto) => {
         try {
@@ -58,5 +59,5 @@ export const useLoginController = () => {
         }
     }
 
-    return { control, handleSubmit: handleSubmit(onSubmit), logoutUser, isSubmitting }
+    return { form, control, handleSubmit: handleSubmit(onSubmit), logoutUser, isSubmitting }
 }

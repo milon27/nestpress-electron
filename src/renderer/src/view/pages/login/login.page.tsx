@@ -1,5 +1,7 @@
 import { StaticImageList } from "@renderer/constant/image.constant"
+import { MyInputWithRHF } from "@renderer/view/components/common/form/my-input"
 import MyButton from "@renderer/view/components/common/my-button"
+import { Form } from "@renderer/view/components/ui/form"
 import { RouteUrl } from "@renderer/view/router/url"
 import { Link } from "react-router-dom"
 import MySpacer from "../../components/common/my-spacer"
@@ -8,22 +10,24 @@ import FullSectionWrapper from "../../components/layout/full-section-wrapper"
 import { useLoginController } from "./login.controller"
 
 export function LoginPage() {
-    const { handleSubmit, isSubmitting } = useLoginController()
+    const { form, control, handleSubmit, isSubmitting } = useLoginController()
     return (
         <FullSectionWrapper className="h-screen grid place-content-center">
             <div className="md:w-96 m-auto px-4">
-                <img src={StaticImageList.LOGO} className="w-1/2 m-auto" alt="" />
+                <img src={StaticImageList.LOGO} className="w-20 m-auto" alt="" />
                 <MySpacer className="h-8" />
                 <MyTitle title="Login" large className="text-center" />
                 <MySpacer className="h-8" />
-                <div className="space-y-4">
-                    {/* <MyInputWithRHF control={control} name="email" type="email" placeholder="Enter Your Email" />
+                <Form {...form}>
+                    <MyInputWithRHF control={control} name="email" type="email" label="Email address" />
+                    <MySpacer className="h-1" />
                     <MyInputWithRHF
                         control={control}
                         name="password"
                         type="password"
-                        placeholder="Enter Your Password"
-                    /> */}
+                        label="Enter Your Password"
+                    />
+                    <MySpacer className="h-4" />
                     <MyButton
                         loading={isSubmitting}
                         onClick={async () => {
@@ -33,7 +37,7 @@ export function LoginPage() {
                     >
                         Login
                     </MyButton>
-                </div>
+                </Form>
                 <MySpacer className="h-4" />
                 <div>
                     <p className="text-gray-400 text-sm font-normal text-right">
