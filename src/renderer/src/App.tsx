@@ -1,5 +1,5 @@
 import { Button } from './view/components/ui/button'
-import Versions from './view/components/versions'
+import Versions from './view/components/common/versions'
 
 function App(): JSX.Element {
   return (
