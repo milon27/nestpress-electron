@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { HashRouter, Route, Routes } from "react-router-dom"
 // import ProtectedRoute from "./protected.route"
 import { PageWrapper, SidebarWrapper } from "@milon27/react-sidebar"
 import { Constant } from "@renderer/constant/common.constant"
@@ -38,7 +38,7 @@ export default function RootRouter() {
                 }}
                 onProfileImgClick={() => {}}
             >
-                <BrowserRouter>
+                <HashRouter>
                     <MyGlobalModal {...modal} />
 
                     <Routes>
@@ -87,7 +87,7 @@ export default function RootRouter() {
 
                         <Route path={RouteUrl.NOT_FOUND} element={<NotFoundPage />} />
                     </Routes>
-                </BrowserRouter>
+                </HashRouter>
             </SidebarWrapper>
         </>
     )
